@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patient Registration</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="form.css">
+</head>
+<body>
+<h1>Urine Test Strip Reader System</h1>
+<h2>Patient Registration Form</h2>
+<hr>
+<form action="register.php" method="POST" target="_blank">
+
+<fieldset>
+<legend>Patient Details</legend>
+Patient Name : <br>
+<input type="text" name="pname" size="30" maxlength="40"><br><br>
+Age : <br>
+<input type="number" name="age" min="1" max="120"><br><br>
+Gender : <br>
+<input type="radio" name="gender" value="male" checked> Male
+<input type="radio" name="gender" value="female"> Female
+<input type="radio" name="gender" value="other"> Other<br><br>
+Mobile Number : <br>
+<input type="tel" name="mobile"><br><br>
+Email : <br>
+<input type="email" name="email">
+</fieldset>
+
+<fieldset>
+<legend>Test Details</legend>
+Patient ID : <br>
+<input type="text" name="pid" size="10"><br><br>
+Test Date : <br>
+<input type="date" name="testdate"><br><br>
+Doctor Name : <br>
+<select name="doctor">
+<option value="Mehta" selected>Dr. Mehta</option>
+<option value="Sharma">Dr. Sharma</option>
+<option value="Patil">Dr. Patil</option>
+</select><br><br>
+Symptoms : <br>
+<input type="checkbox" name="fever" value="on"> Fever
+<input type="checkbox" name="burning" value="on"> Burning Urination
+<input type="checkbox" name="pain" value="on"> Back Pain
+<input type="checkbox" name="thirst" value="on"> Excess Thirst<br><br>
+Preferred Report Format : <br>
+<input type="radio" name="format" value="print" checked> Printed Copy
+<input type="radio" name="format" value="email"> Email Copy<br><br>
+Any Other Details : <br>
+<textarea rows="4" cols="40" name="details">Enter here...</textarea>
+</fieldset>
+
+<input type="submit" name="submit" value="Submit">
+<input type="reset" name="reset" value="Reset">
+</form>
+<hr>
+<footer>
+<p><a href="index.html">Back to Home</a></p>
+</footer>
+</body>
+</html>

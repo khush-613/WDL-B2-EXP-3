@@ -1,0 +1,13 @@
+/* Task 6 : Image gallery styling */
+
+.gallery {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #04AA6D;
+    margin: 10px;
+    transition: transform 0.3s;
+}
+
+.gallery:hover {
+    transform: scale(1.15);
+}

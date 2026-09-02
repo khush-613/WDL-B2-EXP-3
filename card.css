@@ -1,0 +1,45 @@
+/* Task 4 : Analyte list shown as a card */
+
+.sidebar {
+    background-color: #ffffff;
+    border: 1px solid #8fd6b4;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px #cccccc;
+    padding: 15px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
+.sidebar li {
+    padding: 8px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #dddddd;
+}
+
+.sidebar li:hover {
+    color: #059862;
+    background-color: #ddffdd;
+}
+
+/* Task 5 : Each user shown as a card using the box model */
+
+.card {
+    display: inline-block;
+    vertical-align: top;
+    width: 180px;
+    margin: 10px;
+    padding: 15px;
+    border: 1px solid #8fd6b4;
+    border-radius: 8px;
+    text-align: center;
+    background-color: #eaf9f1;
+    box-shadow: 0px 3px 8px #cccccc;
+}
+
+.card ul {
+    list-style-type: none;
+    padding: 0px;
+}

@@ -1,0 +1,31 @@
+/* Task 7 : Table styling for the diagnostic report */
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+table, th, td {
+    border: 1px solid #04AA6D;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+th {
+    background-color: #04AA6D;
+    color: #ffffff;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
+
+caption {
+    padding: 10px;
+    font-weight: bold;
+    color: #04AA6D;
+}
