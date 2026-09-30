@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Patient Registration Portal</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="form.css">
+</head>
+<body>
+<h1>Urine Test Strip Reader System</h1>
+<h2>Healthcare Patient Registration Portal</h2>
+<hr>
+<form id="regform" name="regform" novalidate>
+
+<fieldset>
+<legend>Patient Details</legend>
+<label for="pname">Patient Name :</label><br>
+<input type="text" id="pname" name="pname" maxlength="40"><span class="error" id="e_pname"></span><br><br>
+<label for="dob">Date of Birth :</label><br>
+<input type="date" id="dob" name="dob"><span class="error" id="e_dob"></span><br><br>
+<label for="gender">Gender :</label><br>
+<select id="gender" name="gender">
+<option value="">-- Select Gender --</option>
+<option value="Male">Male</option>
+<option value="Female">Female</option>
+<option value="Other">Other</option>
+</select><span class="error" id="e_gender"></span><br><br>
+<label for="blood">Blood Group :</label><br>
+<select id="blood" name="blood">
+<option value="">-- Select Blood Group --</option>
+<option value="A+">A+</option>
+<option value="A-">A-</option>
+<option value="B+">B+</option>
+<option value="B-">B-</option>
+<option value="AB+">AB+</option>
+<option value="AB-">AB-</option>
+<option value="O+">O+</option>
+<option value="O-">O-</option>
+</select><span class="error" id="e_blood"></span>
+</fieldset>
+
+<fieldset>
+<legend>Contact Details</legend>
+<label for="mobile">Mobile Number :</label><br>
+<input type="tel" id="mobile" name="mobile" maxlength="10"><span class="error" id="e_mobile"></span><br><br>
+<label for="email">Email :</label><br>
+<input type="email" id="email" name="email"><span class="error" id="e_email"></span><br><br>
+<label for="address">Address :</label><br>
+<textarea id="address" name="address" rows="4" cols="40"></textarea><span class="error" id="e_address"></span>
+</fieldset>
+
+<fieldset>
+<legend>Appointment Details</legend>
+<label for="dept">Department / Appointment Type :</label><br>
+<select id="dept" name="dept">
+<option value="">-- Select Department --</option>
+<option value="Pathology">Pathology</option>
+<option value="General Medicine">General Medicine</option>
+<option value="Nephrology">Nephrology</option>
+<option value="Cardiology">Cardiology</option>
+<option value="Consultation">Consultation</option>
+</select><span class="error" id="e_dept"></span><br><br>
+<label for="regdate">Registration Date :</label><br>
+<input type="date" id="regdate" name="regdate"><span class="error" id="e_regdate"></span>
+</fieldset>
+
+<input type="submit" name="submit" value="Submit">
+<input type="reset" name="reset" value="Reset">
+</form>
+<p id="result"></p>
+<hr>
+<footer>
+<p><a href="index.html">Back to Home</a></p>
+</footer>
+
+<script>
+var form = document.getElementById("regform");
+var today = new Date().toISOString().slice(0, 10);
+
+function value(id) {
+    return document.getElementById(id).value.trim();
+}
+
+function check(id, valid, message) {
+    document.getElementById("e_" + id).textContent = valid ? "" : message;
+    document.getElementById(id).className = valid ? "" : "invalid";
+    return valid;
+}
+
+form.onsubmit = function (event) {
+    event.preventDefault();
+    var ok = true;
+    ok = check("pname", /^[A-Za-z ]+$/.test(value("pname")), "Enter the name using alphabets and spaces only") && ok;
+    ok = check("dob", value("dob") !== "" && value("dob") <= today, "Enter a date of birth that is not in the future") && ok;
+    ok = check("gender", value("gender") !== "", "Select a gender") && ok;
+    ok = check("blood", value("blood") !== "", "Select a blood group") && ok;
+    ok = check("mobile", /^[6-9][0-9]{9}$/.test(value("mobile")), "Enter a valid 10 digit mobile number") && ok;
+    ok = check("email", /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value("email")), "Enter a valid email address") && ok;
+    ok = check("address", value("address") !== "", "Address cannot be left blank") && ok;
+    ok = check("dept", value("dept") !== "", "Select a department or appointment type") && ok;
+    ok = check("regdate", value("regdate") !== "" && value("regdate") <= today, "Registration date cannot be in the future") && ok;
+    document.getElementById("result").textContent = ok ? "Patient registered successfully." : "";
+};
+</script>
+</body>
+</html>

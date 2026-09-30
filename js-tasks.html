@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>JavaScript Tasks - Healthcare</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="form.css">
+</head>
+<body>
+<h1>Urine Test Strip Reader System</h1>
+<h2>JavaScript Programming for Healthcare Domain</h2>
+<hr>
+
+<h3>Task 1 : Patient Information and Registration Fee Calculation</h3>
+<script>
+var patientName = "Rahul Sharma";
+var patientId = "PAT-1001";
+var patientAge = 67;
+var consultationFee = 500;
+var registrationFee = 100;
+var totalAmount = consultationFee + registrationFee;
+var registrationStatus = "Regular Patient";
+
+if (patientAge >= 60) {
+    totalAmount = totalAmount - totalAmount * 0.1;
+    registrationStatus = "Senior Citizen Discount Applied";
+}
+
+document.write("<pre class='output'>");
+document.write("Patient Name : " + patientName + "\n");
+document.write("Patient ID : " + patientId + "\n");
+document.write("Total Amount : Rs. " + totalAmount + "\n");
+document.write("Registration Status : " + registrationStatus + "\n");
+document.write("</pre>");
+
+console.log(patientName, patientId, totalAmount, registrationStatus);
+alert("Total amount payable for " + patientName + " is Rs. " + totalAmount);
+</script>
+
+<h3>Task 2 : Patient Appointment and Priority Decision</h3>
+<pre class="output" id="task2"></pre>
+
+<h3>Task 3 : Patient Object</h3>
+<pre class="output" id="task3"></pre>
+
+<h3>Task 4 : Patient Age Data Using Arrays</h3>
+<pre class="output" id="task4"></pre>
+
+<h3>Task 5 : Validate Patient Registration Details Using Regular Expressions</h3>
+<form id="validateform" name="validateform" novalidate>
+<fieldset>
+<legend>Patient Registration</legend>
+<label for="vname">Patient Name :</label><br>
+<input type="text" id="vname" name="vname"><span class="error" id="e_vname"></span><br><br>
+<label for="vmobile">Mobile Number :</label><br>
+<input type="tel" id="vmobile" name="vmobile" maxlength="10"><span class="error" id="e_vmobile"></span><br><br>
+<label for="vpid">Patient ID :</label><br>
+<input type="text" id="vpid" name="vpid" placeholder="PAT-1234"><span class="error" id="e_vpid"></span><br><br>
+<label for="vemail">Email :</label><br>
+<input type="email" id="vemail" name="vemail"><span class="error" id="e_vemail"></span>
+</fieldset>
+<input type="submit" name="submit" value="Register">
+<input type="reset" name="reset" value="Reset">
+</form>
+<p id="result"></p>
+<hr>
+<footer>
+<p><a href="index.html">Back to Home</a></p>
+</footer>
+
+<script>
+function appointmentPriority(age, temperature, severity, emergency) {
+    if (emergency === "Yes") {
+        return "Emergency Consultation Required";
+    } else if (temperature >= 39) {
+        return "High Priority Consultation";
+    } else if (severity === "Severe") {
+        return "High Priority Consultation";
+    } else if (age >= 60 && severity === "Moderate") {
+        return "Priority Consultation";
+    } else {
+        return "Regular Consultation";
+    }
+}
+
+var age = 67;
+var temperature = 38.2;
+var severity = "Moderate";
+var emergency = "No";
+var recommendation = appointmentPriority(age, temperature, severity, emergency);
+
+var task2 = "Age : " + age + "\n" +
+    "Temperature : " + temperature + " C\n" +
+    "Severity : " + severity + "\n" +
+    "Emergency : " + emergency + "\n" +
+    "Recommendation : " + recommendation;
+
+document.getElementById("task2").textContent = task2;
+console.log(task2);
+
+var patient = {
+    patientName: "Rahul Sharma",
+    patientId: "PAT-1001",
+    age: 67,
+    gender: "Male",
+    bloodGroup: "B+",
+    mobile: "9876543210",
+    department: "Cardiology",
+    appointmentType: "Consultation",
+    registrationStatus: "Confirmed",
+
+    displayPatient: function () {
+        return "Name : " + this.patientName + "\n" +
+            "Patient ID : " + this.patientId + "\n" +
+            "Age : " + this.age + "\n" +
+            "Gender : " + this.gender + "\n" +
+            "Blood Group : " + this.bloodGroup + "\n" +
+            "Mobile : " + this.mobile;
+    },
+
+    displayAppointment: function () {
+        return "Department : " + this.department + "\n" +
+            "Appointment Type : " + this.appointmentType + "\n" +
+            "Registration Status : " + this.registrationStatus;
+    },
+
+    ageCategory: function () {
+        return this.age >= 60 ? "Senior Citizen" : "Adult";
+    }
+};
+
+var task3 = patient.displayPatient() + "\n" + patient.displayAppointment() +
+    "\nCategory : " + patient.ageCategory();
+
+document.getElementById("task3").textContent = task3;
+console.log(task3);
+
+var patientAges = [22, 35, 67, 45, 29, 72, 56, 18, 64, 40];
+
+function average(ages) {
+    var total = 0;
+    for (var i = 0; i < ages.length; i++) {
+        total = total + ages[i];
+    }
+    return total / ages.length;
+}
+
+var seniors = patientAges.filter(function (a) { return a >= 60; });
+var minors = patientAges.filter(function (a) { return a < 18; });
+var above60 = patientAges.filter(function (a) { return a > 60; });
+
+var task4 = "All Patient Ages : " + patientAges.join(", ") + "\n" +
+    "Minimum Age : " + Math.min.apply(null, patientAges) + "\n" +
+    "Maximum Age : " + Math.max.apply(null, patientAges) + "\n" +
+    "Average Age : " + average(patientAges).toFixed(2) + "\n" +
+    "Senior Citizen Patients : " + seniors.length + "\n" +
+    "Patients Below 18 : " + minors.length + "\n" +
+    "Patients Above 60 : " + above60.join(", ");
+
+document.getElementById("task4").textContent = task4;
+console.log(task4);
+
+var validateForm = document.getElementById("validateform");
+
+function value(id) {
+    return document.getElementById(id).value.trim();
+}
+
+function check(id, valid, message) {
+    document.getElementById("e_" + id).textContent = valid ? "" : message;
+    document.getElementById(id).className = valid ? "" : "invalid";
+    return valid;
+}
+
+validateForm.onsubmit = function (event) {
+    event.preventDefault();
+    var ok = true;
+    ok = check("vname", /^[A-Za-z ]+$/.test(value("vname")), "Only alphabets and spaces are allowed") && ok;
+    ok = check("vmobile", /^[0-9]{10}$/.test(value("vmobile")), "Mobile number must be exactly 10 digits") && ok;
+    ok = check("vpid", /^PAT-[0-9]{4}$/.test(value("vpid")), "Patient ID must be in the format PAT-1234") && ok;
+    ok = check("vemail", /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value("vemail")), "Enter a valid email address") && ok;
+    document.getElementById("result").textContent = ok ? "Patient registered successfully." : "";
+};
+</script>
+</body>
+</html>

@@ -41,3 +41,25 @@ input[type="submit"], input[type="reset"] {
 input[type="submit"]:hover, input[type="reset"]:hover {
     background-color: #059862;
 }
+
+.error {
+    display: block;
+    color: #b31212;
+}
+
+.invalid {
+    border: 1px solid #b31212;
+    background-color: #ffe6e6;
+}
+
+#result {
+    color: #04AA6D;
+    font-weight: bold;
+}
+
+pre.output {
+    padding: 10px;
+    border: 1px solid #8fd6b4;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
